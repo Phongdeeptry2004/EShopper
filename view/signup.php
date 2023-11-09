@@ -141,7 +141,7 @@ form .signup-link a:hover{
     <div class="divgiua">
       <div class="wrapper">
          <div class="title">
-            Đăng Nhập
+            Đăng Ký
          </div>
          <form action="index.php?act=dangnhap">
             <div class="field">
@@ -152,16 +152,19 @@ form .signup-link a:hover{
                <input type="password" name='pass' required>
                <label>Password</label>
             </div>
-            <div class="content">
-               <div class="pass-link">
-                  <a href="#">Quên Mật Khẩu</a>
-               </div>
+            <div class="field">
+               <input type="text" name='name' required>
+               <label>Họ Tên</label>
+            </div>
+            <div class="field">
+               <input type="text" name='phone' required>
+               <label>Số Điện Thoại</label>
             </div>
             <div class="field">
                <input type="submit" value="Đăng Nhập">
             </div>
             <div class="signup-link">
-               Chưa Đăng Ký? <a href="index.php?act=sigup">Đăng Ký Ngay</a>
+               Là Thành Viên Rồi ? <a href="index.php?act=login">Đăng Nhập Ngay</a>
             </div>
          </form>
       </div>

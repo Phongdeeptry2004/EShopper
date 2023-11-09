@@ -3,6 +3,17 @@ function showallsp(){
     $sql="SELECT * FROM `product` WHERE 1";
     return pdo_query($sql);
 }
+function showspbypage($page) {
+    $limit = 12;
+    $offset = ($page - 1) * $limit;
+    $sql = "SELECT * FROM `product` WHERE 1 LIMIT $offset, $limit";
+    return pdo_query($sql);
+}
+function pagenumbers(){
+    $sql= "SELECT COUNT(id) as slsp FROM `product` WHERE 1;";
+    return pdo_query($sql);
+}
+
 function show8sp(){
     $sql="SELECT * FROM `product` ORDER BY `product`.`luotxem` DESC LIMIT 8";
     return pdo_query($sql);

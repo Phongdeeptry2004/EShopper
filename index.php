@@ -37,6 +37,10 @@
                     include "view/menu.php";
                     include('view/login.php');
                     break;
+                    case "signup":
+                        include "view/menu.php";
+                        include('view/signup.php');
+                        break;
                 default:
                     include "view/menuslide.php";
                     include "view/home.php";
