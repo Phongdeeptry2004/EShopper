@@ -8,6 +8,7 @@
         include("model/taikhoan.php");
         include("model/varians.php");
         include("model/danhmuc.php");
+        include("model/cart.php");
         include "view/header.php";
         if (isset($_GET['act']) && $_GET['act'] != "") {
             $act = $_GET['act'];
@@ -42,8 +43,43 @@
                         include("view/menu.php");
                         include "view/inforuser.php";
                         break;
-                case 'formupdateinfor':
-                    include 'view/updateinfor.php';
+                case 'updateinfor':
+                    if(isset($_POST['submit'])){
+                        $id=$_SESSION['user']['id'];
+                        $avatar=imageuploadtk();
+                        $name=$_POST['hoten'];
+                        $email=$_POST['email'];
+                        $phone=$_POST['phone'];
+                        suainforuser($id,$email,$name,$phone,$avatar);
+                        header("Location: index.php?act=infouser") ;
+                    }
+                    break;
+                case 'cart':
+                    include("view/menu.php");
+                    include("view/cart.php");
+                    break;
+                case "addsptocart":
+                    $id=$_GET["id"];
+                    $id_user=$_SESSION['user']['id']; 
+                    addsptocart($id,$id_user);
+                    header('Location:index.php?act=cart') ;
+                    break;
+                case 'xoaspincart':
+                    $id=$_GET['id'];
+                    xoaspincart($id);
+                    include("view/menu.php");
+                    include("view/cart.php");
+                    break;
+                case 'quantityspincart':
+                    $id=$_POST['id'];
+                    $quantity=$_POST['quantity'];
+                    quantityspincart($id,$quantity);
+                    include("view/menu.php");
+                    include("view/cart.php");
+                    break;
+                case 'formcheckout':
+                    include("view/menu.php");
+                    include("view/checkout.php");
                     break;
                 default:
                     include "view/menuslide.php";

@@ -22,7 +22,7 @@ function addtk($user,$pass,$email,$hoten,$phone,$ngaytao,$vaitro,$avatar){
 }
 function imageuploadtk(){
     //sử lý file ảnh
-    $target_dir = "view/image/avatar/";
+    $target_dir = "view/img/avatar/";
     $img = $target_dir . basename($_FILES["img"]["name"]);
     if (move_uploaded_file($_FILES["img"]["tmp_name"], $img)) {
         // echo "The file " . htmlspecialchars(basename($_FILES["img"]["name"])) . " has been uploaded.";
@@ -30,6 +30,11 @@ function imageuploadtk(){
         // echo "Sorry, there was an error uploading your file.";
     }
     return($img);
+}
+function suainforuser($id,$email,$hoten,$phone,$avatar){
+    $sql="UPDATE `taikhoan` SET 
+    `email`='$email',`hoten`='$hoten',`phone`='$phone',`avatar`='$avatar' WHERE id=".$id;
+    pdo_execute($sql);
 }
 function suatk($id,$user,$pass,$email,$hoten,$phone,$vaitro,$avatar){
     $sql="UPDATE `taikhoan` SET 
