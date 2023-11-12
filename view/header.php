@@ -74,17 +74,16 @@
           </a>
         </div>
         <div class="col-lg-6 col-6 text-left">
-          <form action="">
+        <form action="index.php?act=allsanpham" method="POST">
             <div class="input-group">
               <input
+              name="kyw"
                 type="text"
                 class="form-control"
                 placeholder="Search for products"
               />
               <div class="input-group-append">
-                <span class="input-group-text bg-transparent text-primary">
-                  <i class="fa fa-search"></i>
-                </span>
+                  <button type="submit" style="border: 1px solid #EDF1FF" class="btn"><i class="fa fa-search" style="color: #D19C97;"></i></button>
               </div>
             </div>
           </form>
@@ -93,8 +92,10 @@
           <a href="index.php?act=cart" class="btn border">
             <i class="fas fa-shopping-cart text-primary"></i>
             <span class="badge"><?php 
+            if(isset($_SESSION['user'])){
             $id_user=$_SESSION["user"]['id'];
-           echo countsp($id_user)[0]['sl']?></span>
+           echo countsp($id_user)[0]['sl']; } ?></span>
+           
           </a>
         </div>
       </div>
