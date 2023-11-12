@@ -3,10 +3,15 @@ function showallsp(){
     $sql="SELECT * FROM `product` WHERE 1";
     return pdo_query($sql);
 }
-function showspbypage($page) {
+function showspbypage($page,$kyw) {
+    $sql="SELECT * FROM `product` WHERE 1";
+    if($kyw!=""){
+        $sql.=" AND `name` LIKE '%".$kyw."%'";
+    }
     $limit = 12;
     $offset = ($page - 1) * $limit;
-    $sql = "SELECT * FROM `product` WHERE 1 LIMIT $offset, $limit";
+    $sql.= " LIMIT $offset, $limit";
+   
     return pdo_query($sql);
 }
 function pagenumbers(){
@@ -38,7 +43,10 @@ function searchsp($q){
     $sql = "SELECT * FROM product WHERE name LIKE '%$q%'";
     return pdo_query($sql);
 }
-
+function truslsp($id,$quantity){
+    $sql="UPDATE `product` SET `quantity`=quantity-$quantity WHERE id=$id";
+    pdo_execute($sql);
+}
   function imageuploadsp(){
     //sử lý file ảnh
     $target_dir = "view/image/";
@@ -59,4 +67,15 @@ function suasp($id,$name,$des,$price,$quantity,$img,$ngaycapnhat,$luotxem,$id_dm
     $sql="UPDATE `product` SET 
     `name`='$name',`des`='$des',`price`='$price',`quantity`='$quantity',`img`='$img',`ngaycapnhat`='$ngaycapnhat',`luotxem`='$luotxem',`id_dm`='$id_dm',`id_user`='$user' WHERE id=". $id;
     pdo_execute($sql);
+}
+function update_luotxem($id) {
+    pdo_execute("UPDATE `product`SET `luotxem`= `luotxem`+ 1 WHERE `id`=".$id);
+}
+function load_ten_dm($iddm) {
+    if($iddm>0){
+    $dm=pdo_query("SELECT * FROM `danhmuc` WHERE `id`=".$iddm);
+    return $dm;
+    }else{
+    return "";
+}
 }

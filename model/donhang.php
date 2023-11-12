@@ -7,6 +7,10 @@ function showalldhbyid($id){
     $sql="SELECT * FROM `donhang` WHERE id_user=$id";
     return pdo_query($sql);
 }
+function addctdh($id_dh,$id_product,$soluong,$total){
+    $sql= "INSERT INTO `chitietdonhang`(`id_donhang`, `id_product`, `id_variants`, `soluong`, `total`) VALUES ('$id_dh','$id_product',1,'$soluong','$total')";
+    pdo_execute($sql);
+}
 function showonedh($id){
     $sql="SELECT * FROM `donhang` WHERE id=".$id;
     return pdo_query($sql);

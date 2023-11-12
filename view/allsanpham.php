@@ -165,7 +165,7 @@
                     if (isset($_GET["page"]) && $_GET["page"] != "") {
                         $page = $_GET["page"];
                     } else $page = 1;
-                    foreach (showspbypage($page) as $key) : ?>
+                    foreach (showspbypage($page,$kyw) as $key) : ?>
                         <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                             <div class="card product-item border-0 mb-4">
                                 <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">

@@ -7,9 +7,11 @@ function showcart($id){
     $sql= "SELECT
     giohang.id,
     giohang.id_user,
+    giohang.id_product,
     product.img,
     product.name,
     product.price,
+    product.quantity as slsp,
     giohang.quantity
   FROM giohang
   INNER JOIN product ON giohang.id_product = product.id where giohang.id_user=$id"; 

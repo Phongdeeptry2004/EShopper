@@ -31,7 +31,8 @@
                         <?php
                         $id = $_SESSION["user"]['id'];
                         $total = 0;
-                        foreach (showcart($id) as $key) :
+
+                        foreach (showcart($id) as $key):
                             $productPrice = $key['price'] * $key['quantity'];
                             $total += $productPrice;
                         ?>
@@ -42,7 +43,7 @@
                                     <td class="align-middle">
                                         <div class="input-group quantity mx-auto">
                                             <input type="hidden" name="id" value='<?php echo $key['id'] ?>'>
-                                            <input type="number" name='quantity' class="form-control form-control-sm bg-secondary text-center" value="<?php echo $key['quantity'] ?>">
+                                            <input type="number" max='<?php echo $key['slsp']?>' name='quantity'  class="form-control form-control-sm bg-secondary text-center" value="<?php echo $key['quantity'] ?>">
                                         </div>
                                     </td>
                                     <td class="align-middle"><?php
