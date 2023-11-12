@@ -13,12 +13,14 @@
     <!-- Checkout Start -->
     <?php 
     $tk=showonetk($_SESSION["user"]["id"]);
-    print_r($tk);
-    $sp=showcart($_SESSION["user"]["id"]);
-    print_r($sp);
+    // print_r($tk);
+    $sp=showalldhbyid($_SESSION["user"]["id"]);
+    $last_row=end($sp);
+    $id=reset($last_row);
+    // echo $id;
     ?>
     <div class="container-fluid pt-5">
-        <form action="index.php?act=checkout" method="post">
+        <form action="index.php?act=checkout" method="POST">
         <div class="row px-xl-5">
             <div class="col-lg-8">
                 <div class="mb-4">
@@ -26,27 +28,27 @@
                     <div class="row">
                         <div class="col-md-12 form-group">
                             <label>Họ Tên</label>
-                            <input class="form-control" type="text" value="<?php echo $tk[0]['hoten']?>" placeholder="Mời Nhập" >
+                            <input class="form-control" name='hoten' type="text" value="<?php echo $tk[0]['hoten']?>" placeholder="Mời Nhập" >
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input class="form-control" value="<?php echo $tk[0]['email']?>" type="text" placeholder="example@email.com">
+                            <input class="form-control" name='email' value="<?php echo $tk[0]['email']?>" type="text" placeholder="example@email.com">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Mobile No</label>
-                            <input class="form-control" type="text" value="<?php echo $tk[0]['phone']?>" placeholder="+123 456 789">
+                            <input class="form-control" name='phone' type="text" value="<?php echo $tk[0]['phone']?>" placeholder="+123 456 789">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Thành Phố</label>
-                            <input class="form-control" type="text" required placeholder="Mời nhập">
+                            <input class="form-control" name='thanhpho' type="text" required placeholder="Mời nhập">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Huyện</label>
-                            <input class="form-control" type="text " required placeholder="Mời nhập">
+                            <input class="form-control" name='huyen' type="text " required placeholder="Mời nhập">
                         </div>
                         <div class="col-md-12 form-group">
                             <label>Địa Chỉ</label>
-                            <input class="form-control" type="text" required  placeholder="Mời nhập">
+                            <input class="form-control" name='sonha' type="text" required  placeholder="Mời nhập">
                         </div>
                     </div>
                 </div>
@@ -100,25 +102,26 @@
                     <div class="card-body">
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                <label class="custom-control-label" for="paypal">Paypal</label>
+                                <input type="radio" class="custom-control-input" value="Thanh toán online" name="payment" id="paypal">
+                                <label class="custom-control-label" for="paypal">Thanh toán online</label>
+                            </div>
+                        </div>
+                        <input type="hidden" name='total' value="<?php echo $total?>">
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input"  value="Thanh toán bằng thẻ visa" name="payment" id="directcheck">
+                                <label class="custom-control-label" for="directcheck">Thanh toán bằng thẻ visa</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                                <label class="custom-control-label" for="directcheck">Direct Check</label>
-                            </div>
-                        </div>
-                        <div class="">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
-                                <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                                <input type="radio" class="custom-control-input" value="Thanh toán khi nhận hàng" name="payment" id="banktransfer">
+                                <label class="custom-control-label" for="banktransfer">Thanh toán khi nhận hàng</label>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
-                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
+                        <button type="submit" name='submit' class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
                     </div>
                 </div>
             </div>
